@@ -52,8 +52,10 @@ public partial class MainLayout
         Statistics[6] == countLost;
         Statistics[7] == currentStreak;
         Statistics[8] == MaxStreak;*/
-        CountPlays = Statistics.Take(6).Sum();
-        WinsPercent = CountPlays * 100 / (CountPlays + Statistics[6]);
+        var countWins = Statistics.Take(6).Sum();
+        CountPlays = countWins + Statistics[6];
+        if (CountPlays > 0) WinsPercent = countWins * 100 / CountPlays;
+
         StatisticsSeries = Statistics.Take(6).Select(t => (double)t).ToArray();
     }
 
