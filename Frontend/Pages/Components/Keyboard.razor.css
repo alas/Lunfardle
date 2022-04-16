@@ -1,0 +1,10 @@
+#container:focus-visible {
+    outline: none;
+}
+#container:focus {
+    outline: none;
+}
+#container {
+    min-width: 420px;
+    width: 720px;
+}

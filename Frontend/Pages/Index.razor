@@ -1,0 +1,50 @@
+﻿@page "/"
+@using Lunfardle.Pages.Components
+
+<div class="top">
+    <MudGrid Justify="Justify.Center" Spacing="1">
+        @if (Game.IsLose)
+        {
+            <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Elevation="24" NoIcon="true" ContentAlignment="HorizontalAlignment.Center" Style="max-width: 480px;">
+                @Game.Answer.ToUpper()
+            </MudAlert>
+            <br />
+        }
+
+        @foreach (var guessResult in Game.Results)
+        {
+            <MudItem Class="d-flex justify-center" xs="12">
+                <div class="letter-box-row">
+                    @foreach (var (letter, matchResult) in guessResult) {
+                        <LetterBox Letter="letter" MatchResult="matchResult" />
+                    }
+                </div>
+            </MudItem>
+            <br />
+        }
+
+        @if (Game.IsWin)
+        {
+            <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Elevation="24" NoIcon="true" ContentAlignment="HorizontalAlignment.Center" Style="max-width: 480px;">
+                Winner!!!
+            </MudAlert>
+        }
+        else if(!Game.IsLose)
+        {
+            <MudItem Class="d-flex justify-center" xs="12">
+                <div class="letter-box-row">
+                    @for (var i = 0; i < Game.Answer.Length; i += 1) {
+                        var idx = i;
+                        <InputLetterBox Letter="GameInput.GetInputAt(idx)" />
+                    }
+                </div>
+            </MudItem>
+            <br />
+        }
+        <br />
+    </MudGrid>
+</div>
+<br />
+<div class="input-row">
+        <Keyboard />
+</div>

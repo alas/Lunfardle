@@ -1,0 +1,75 @@
+﻿@using Lunfardle.Game
+@inherits LayoutComponentBase
+<MudThemeProvider IsDarkMode="true" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudLayout>
+    <MudAppBar Elevation="0">
+        <MudText Typo="Typo.h4" Align="Align.Center" Style="width: 100%;">Lunfardle</MudText>
+        <MudToggleIconButton @bind-Toggled="@ShowStatistics" Variant="Variant.Filled"
+            Icon="@Icons.Filled.Assessment" Color="Color.Default" Title="Estadísticas"
+            ToggledIcon="@Icons.Material.Filled.Assessment" ToggledColor="@Color.Default" ToggledTitle="Estadísticas"
+        ></MudToggleIconButton>
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Default" Variant="Variant.Filled" Title="Ayudin" Href="https://alas.github.io/WordleHelper/" Target="_blank"></MudIconButton>
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Default" Variant="Variant.Filled" Title="Código fuente" Href="https://github.com/alas/Lunfardle" Target="_blank"></MudIconButton>
+    </MudAppBar>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+<MudDialog @bind-IsVisible="ShowStatistics" Options="new() { FullWidth = true, CloseButton = true, CloseOnEscapeKey = true }">
+    <TitleContent>
+        <MudText Typo="Typo.h6">Estadísticas</MudText>
+    </TitleContent>
+    <DialogContent>
+
+        <MudText Typo="Typo.h6" Align="Align.Center" Style="width: 100%;">Jugadas</MudText>
+        <MudGrid>
+            <MudItem xs="3">
+                <MudStack>
+                    <MudText Align="Align.Center">@CountPlays</MudText>
+                    <MudText Align="Align.Center">Total de jugadas</MudText>
+                </MudStack>
+            </MudItem>
+            <MudItem xs="3">
+                <MudStack>
+                    <MudText Align="Align.Center">@WinsPercent%</MudText>
+                    <MudText Align="Align.Center">Victorias</MudText>
+                </MudStack>
+            </MudItem>
+            <MudItem xs="3">
+                <MudStack>
+                    <MudText Align="Align.Center">@Statistics[7]</MudText>
+                    <MudText Align="Align.Center">Racha actual</MudText>
+                </MudStack>
+            </MudItem>
+            <MudItem xs="3">
+                <MudStack>
+                    <MudText Align="Align.Center">@Statistics[8]</MudText>
+                    <MudText Align="Align.Center">Mejor actual</MudText>
+                </MudStack>
+            </MudItem>
+        </MudGrid>
+
+        <MudGrid Justify="Justify.Center">
+            <MudItem xs="6">
+                <MudStack>
+                    <MudText Typo="Typo.h6" Align="Align.Center" Style="width: 100%;">Resultado</MudText>
+                    <MudText Align="Align.Center">@((MarkupString)GetSquares(true))</MudText>
+                    <MudContainer Style="width: 60%;" Class="justify-center">
+                        <MudButton Class="object-center" Variant="Variant.Filled" EndIcon="@Icons.Filled.Share" Color="Color.Primary" OnClick="@(() => CopyToClipboard())">Copiar</MudButton>
+                    </MudContainer>
+                </MudStack>
+            </MudItem>
+            <MudItem xs="6">
+                <MudText Typo="Typo.h6" Align="Align.Center" Style="width: 100%;">Distribucion</MudText>
+                <MudChart ChartType="ChartType.Donut" InputData="@StatisticsSeries" InputLabels="@(new[]{ "1", "2", "3", "4", "5", "6" })" Width="100%" Height="250px">
+                </MudChart>
+            </MudItem>
+        </MudGrid>
+
+    </DialogContent>
+</MudDialog>

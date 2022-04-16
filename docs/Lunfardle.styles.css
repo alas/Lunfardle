@@ -1,0 +1,100 @@
+/* /Pages/Components/InputLetterBox.razor.rz.scp.css */
+.tile-input[b-4g4e7x80z6] {
+    font-weight: bold;
+    background-color: black;
+    color: wheat;
+    border: 2px solid wheat;
+}
+
+.tile-empty[b-4g4e7x80z6] {
+    font-weight: bold;
+    background-color: dimgrey;
+    border: 2px solid grey;
+}
+/* /Pages/Components/Keyboard.razor.rz.scp.css */
+#container:focus-visible[b-ztz4jyqnyz] {
+    outline: none;
+}
+#container:focus[b-ztz4jyqnyz] {
+    outline: none;
+}
+#container[b-ztz4jyqnyz] {
+    min-width: 420px;
+    width: 720px;
+}
+/* /Pages/Components/KeyboardButton.razor.rz.scp.css */
+.key-button-letter[b-bht4xuj2e4] {
+    text-transform: uppercase;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border-radius: 5px;
+}
+.btn-none-hit[b-bht4xuj2e4] {
+    background-color: dimgray !important;
+    color: white !important;
+}
+
+.btn-char-hit[b-bht4xuj2e4] {
+    background-color: darkgoldenrod !important;
+    color: white !important;
+}
+
+.btn-full-hit[b-bht4xuj2e4] {
+    background-color: darkgreen !important;
+    color: white !important;
+}
+/* /Pages/Components/LetterBox.razor.rz.scp.css */
+.tile-full-hit[b-7vb5qx8tsk] {
+    font-weight: bold;
+    background-color: darkgreen;
+    color: white;
+}
+
+.tile-partial-hit[b-7vb5qx8tsk] {
+    font-weight: bold;
+    background-color: darkgoldenrod;
+    color: white;
+}
+
+.tile-not-hit[b-7vb5qx8tsk] {
+    font-weight: bold;
+    background-color: dimgray;
+    color: white;
+}
+/* /Pages/Index.razor.rz.scp.css */
+.letter-box-row[b-in9x9xj5r3]
+{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100%;
+    min-width: 400px;
+}
+
+.input-row[b-in9x9xj5r3]
+{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100%;
+}
+
+.top[b-in9x9xj5r3]
+{
+    margin-top: 1vh;
+    height: 500px;
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.top[b-in9x9xj5r3]::-webkit-scrollbar
+{
+    display: none;
+}

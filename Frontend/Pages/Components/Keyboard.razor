@@ -1,0 +1,17 @@
+<div id="container" tabindex="0" @onkeydown="OnKeyDown" @ref="_container" @onfocusout="CatchFocus">
+    <MudGrid Justify="Justify.Center" Spacing="1">
+        <KeyRow KeysToGenerate="_keyboardRows[0]" />
+    </MudGrid>
+    <MudGrid Justify="Justify.Center" Spacing="1">
+        <KeyRow KeysToGenerate="_keyboardRows[1]" />
+    </MudGrid>
+    <MudGrid Justify="Justify.Center" Spacing="1">
+        <MudItem xs="2" Class="d-flex justify-center">
+            <MudButton Variant="Variant.Filled" Color="@Color.Info" Class="black-gold-container key-button" @onclick="_ => Guess()" >Intro</MudButton>
+        </MudItem>
+        <KeyRow KeysToGenerate="_keyboardRows[2]"/>
+        <MudItem xs="1" Class="d-flex justify-center">
+            <MudIconButton Icon="@Icons.Material.Outlined.Backspace" Variant="Variant.Filled" Color="Color.Info" Class="black-gold-container key-button" @onclick="_ => Back()"/>
+        </MudItem>
+    </MudGrid>
+</div>

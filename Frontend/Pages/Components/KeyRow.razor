@@ -1,0 +1,9 @@
+@if (KeysToGenerate != null)
+{
+    @foreach (var key in KeysToGenerate)
+    {
+        <MudItem xs="1" Class="d-flex justify-center">
+            <KeyboardButton Text="@key" OnClick="@(_ => GameInput.Input(key))" />
+        </MudItem>
+    }
+}
