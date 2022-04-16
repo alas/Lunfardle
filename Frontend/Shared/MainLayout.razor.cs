@@ -17,6 +17,9 @@ public partial class MainLayout
     [Inject]
     private Game Game { get; set; }
 
+    [Inject]
+    private NavigationManager UriHelper { get; set; }
+
     private bool ShowStatistics { get; set; }
 
     private int[] Statistics { get; set; }
@@ -99,5 +102,13 @@ public partial class MainLayout
     private ValueTask CopyToClipboard()
     {
         return JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", GetSquares(false));
+    }
+
+    private void Reset()
+    {
+        LocalStorageService.SetItem("Statistics", default(int[]));
+        LocalStorageService.SetItem("LastGuessResults", default(List<GuessResult[]>));
+        LocalStorageService.SetItem("LastSavedDate", default(DateTime));
+        UriHelper.NavigateTo(UriHelper.Uri, forceLoad: true);
     }
 }
