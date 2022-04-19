@@ -17,9 +17,6 @@ public partial class MainLayout
     [Inject]
     private Game Game { get; set; }
 
-    [Inject]
-    private NavigationManager UriHelper { get; set; }
-
     private bool ShowStatistics { get; set; }
 
     private int[] Statistics { get; set; }
@@ -64,19 +61,38 @@ public partial class MainLayout
 
     private void SetSavedStatistics()
     {
-        if (Game.IsWin)
+        if (Game.IsLose || Game.IsWin)
         {
-            Statistics[Game.Results.Count - 1]++;
-            Statistics[7]++;
-            if (Statistics[7] > Statistics[8])
-                Statistics[8] = Statistics[7];
+            #region Update Statistics
+
+            if (Game.IsWin)
+            {
+                Statistics[Game.Results.Count - 1]++;
+                Statistics[7]++;
+                if (Statistics[7] > Statistics[8])
+                    Statistics[8] = Statistics[7];
+            }
+            else
+            {
+                Statistics[6]++;
+                Statistics[7] = 0;
+            }
             LocalStorageService.SetItem("Statistics", Statistics);
-        }
-        else if (Game.IsLose)
-        {
-            Statistics[6]++;
-            Statistics[7] = 0;
-            LocalStorageService.SetItem("Statistics", Statistics);
+
+            #endregion
+
+            #region Show Statistics
+
+            var timer = new System.Timers.Timer(1000);
+            timer.Elapsed += (Object? source, System.Timers.ElapsedEventArgs e) =>
+            {
+                timer.Dispose();
+                ShowStatistics = true;
+                InvokeAsync(StateHasChanged);
+            };
+            timer.Enabled = true;
+
+            #endregion
         }
     }
 
